@@ -10,33 +10,90 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AmaliyotRouteImport } from './routes/amaliyot'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as YoriqnomaRouteImport } from './routes/yoriqnoma'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AmaliyotRoute = AmaliyotRouteImport.update({
+  id: '/amaliyot',
+  path: '/amaliyot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const YoriqnomaRoute = YoriqnomaRouteImport.update({
+  id: '/yoriqnoma',
+  path: '/yoriqnoma',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/amaliyot': typeof AmaliyotRoute
+  '/dashboard': typeof DashboardRoute
+  '/faq': typeof FaqRoute
+  '/login': typeof LoginRoute
+  '/yoriqnoma': typeof YoriqnomaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/amaliyot': typeof AmaliyotRoute
+  '/dashboard': typeof DashboardRoute
+  '/faq': typeof FaqRoute
+  '/login': typeof LoginRoute
+  '/yoriqnoma': typeof YoriqnomaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/amaliyot': typeof AmaliyotRoute
+  '/dashboard': typeof DashboardRoute
+  '/faq': typeof FaqRoute
+  '/login': typeof LoginRoute
+  '/yoriqnoma': typeof YoriqnomaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/amaliyot' | '/dashboard' | '/faq' | '/login' | '/yoriqnoma'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/amaliyot' | '/dashboard' | '/faq' | '/login' | '/yoriqnoma'
+  id:
+    | '__root__'
+    | '/'
+    | '/amaliyot'
+    | '/dashboard'
+    | '/faq'
+    | '/login'
+    | '/yoriqnoma'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AmaliyotRoute: typeof AmaliyotRoute
+  DashboardRoute: typeof DashboardRoute
+  FaqRoute: typeof FaqRoute
+  LoginRoute: typeof LoginRoute
+  YoriqnomaRoute: typeof YoriqnomaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +105,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/amaliyot': {
+      id: '/amaliyot'
+      path: '/amaliyot'
+      fullPath: '/amaliyot'
+      preLoaderRoute: typeof AmaliyotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/yoriqnoma': {
+      id: '/yoriqnoma'
+      path: '/yoriqnoma'
+      fullPath: '/yoriqnoma'
+      preLoaderRoute: typeof YoriqnomaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AmaliyotRoute: AmaliyotRoute,
+  DashboardRoute: DashboardRoute,
+  FaqRoute: FaqRoute,
+  LoginRoute: LoginRoute,
+  YoriqnomaRoute: YoriqnomaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

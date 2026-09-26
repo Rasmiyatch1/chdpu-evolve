@@ -1,0 +1,5 @@
+- [x] Inspect supplied brief, starter, and public CHDPU site.
+- [x] Enable Cloud login and create private practice records.
+- [ ] Build branded home, practice search, guidance, FAQ, login, and personal dashboard.
+- [ ] Verify desktop/mobile rendering and sign-in/search flow.
+- [ ] Note that the original platform's private records and APIs are not connected.
