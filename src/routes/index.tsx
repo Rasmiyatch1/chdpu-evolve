@@ -1,24 +1,21 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { ArrowRight, ArrowUpRight, BarChart3, BriefcaseBusiness, Building2, CalendarCheck, Check, ClipboardCheck, GraduationCap, School, Search, ShieldCheck, UserRoundCheck } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { DashboardPreview } from '@/components/DashboardPreview';
+import { PracticeSearch } from '@/components/PracticeSearch';
+import { SiteFooter, SiteHeader, pageHead } from '@/components/SiteChrome';
+import campus from '@/assets/chdpu-campus.jpg.asset.json';
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
-export const Route = createFileRoute("/")({
-  component: Index,
-});
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
+export const Route = createFileRoute('/')({ head: () => pageHead('CHDPU 4+2 Amaliyot — Raqamli amaliyot platformasi','CHDPU talabalari amaliyot jarayonini boshqarish, topshiriqlar, davomat va natijalarni kuzatish uchun yagona raqamli platforma.'), component: HomePage });
+const stats=[['4,000+','TALABALAR'],['08','AMALIYOT TURLARI'],['43+','TOPSHIRIQLAR'],['04','FOYDALANUVCHI ROLLARI']];
+const steps=[['01','Profil','Talaba ma’lumotlari tasdiqlanadi.'],['02','Amaliyot joyi','Hamkor maktab bilan biriktiriladi.'],['03','Topshiriqlar','Reja asosida vazifalar bajariladi.'],['04','Davomat','Amaliyot kunlari qayd etiladi.'],['05','Natija','Yakuniy hisobot va baho.']];
+const roles=[{n:'01',t:'TALABA',i:GraduationCap,c:['Profil','Topshiriqlar','Davomat','Amaliyot holati']},{n:'02',t:'AMALIYOT RAHBARI',i:UserRoundCheck,c:['Talabalarni kuzatish','Topshiriqlar','Davomat','Monitoring']},{n:'03',t:'FAKULTET',i:School,c:['Guruhlar','Monitoring','Statistika','Hisobot']},{n:'04',t:'AMALIYOT BO‘LIMI',i:ShieldCheck,c:['Jarayon nazorati','Tashkilotlar','Tahlil','Boshqaruv']}];
+function HomePage(){return <><SiteHeader/><main>
+<section className="hero"><div className="hero-grid"/><div className="hero-spot"/><div className="container hero-inner"><div className="hero-copy"><div className="eyebrow"><span/> CHDPU · 4+2 AMALIYOT TIZIMI</div><h1><span className="hero-number"><i>4</i><b>+</b><i>2</i></span><span>DIGITAL<br/>PRACTICE</span></h1><p>Chirchiq davlat pedagogika universiteti talabalari amaliyot jarayonini boshqarish uchun yagona raqamli platforma.</p><div className="hero-actions"><Button asChild size="lg"><Link to="/login">Platformaga kirish <ArrowUpRight/></Link></Button><Button asChild size="lg" variant="outline"><Link to="/amaliyot">Amaliyotni izlash <Search/></Link></Button></div><div className="hero-note"><span><Check/> Xavfsiz kirish</span><span><Check/> Real vaqtda kuzatuv</span></div></div><DashboardPreview/></div></section>
+<section className="search-band"><div className="container search-card"><div><span className="section-index">01 / QIDIRUV</span><h2>Amaliyotingizni toping</h2><p>Talaba F.I.Sh. yoki shaxsiy amaliyot ID raqami orqali</p></div><PracticeSearch compact/></div></section>
+<section className="stats-section"><div className="container"><div className="section-heading"><div><span className="section-index">02 / KO‘RSATKICHLAR</span><h2>AMALIYOT<br/><em>PLATFORMASI</em></h2></div><p>Nazariya va real pedagogik tajribani yagona raqamli muhitda birlashtiramiz.</p></div><div className="stats-row">{stats.map(([n,l],i)=><div className="stat" key={l}><small>0{i+1}</small><strong>{n}</strong><span>{l}</span></div>)}</div></div></section>
+<section className="journey"><div className="container"><span className="section-index light">03 / JARAYON</span><div className="section-heading dark"><h2>Amaliyot qanday<br/><em>ishlaydi?</em></h2><p>Biriktirishdan yakuniy natijagacha — har bir bosqich aniq, shaffof va nazoratda.</p></div><div className="timeline">{steps.map((s,i)=><div className="timeline-step" key={s[0]}><div className="timeline-dot"><span>{i===0?<Check size={15}/>:s[0]}</span></div><h3>{s[1]}</h3><p>{s[2]}</p></div>)}</div></div></section>
+<section className="ecosystem"><div className="container"><div className="section-heading"><div><span className="section-index">04 / EKOTIZIM</span><h2>Har bir rol uchun<br/><em>aniq imkoniyat</em></h2></div><p>Talabadan boshqaruvgacha yagona, bog‘langan akademik ekotizim.</p></div><div className="role-grid">{roles.map(r=><article className="role-card" key={r.t}><div className="role-top"><span>{r.n}</span><r.i/></div><h3>{r.t}</h3><ul>{r.c.map(x=><li key={x}><Check size={15}/>{x}</li>)}</ul><Link to="/login" aria-label={`${r.t} sifatida kirish`}><ArrowUpRight/></Link></article>)}</div></div></section>
+<section className="campus-section"><img src={campus.url} alt="Chirchiq davlat pedagogika universiteti binosi"/><div className="campus-overlay"/><div className="container campus-content"><span className="section-index light">CHIRCHIQ DAVLAT PEDAGOGIKA UNIVERSITETI</span><h2>TA’LIM.<br/>TAJRIBA.<br/><em>AMALIYOT.</em></h2><p>Kelajak pedagoglarini real maktab muhiti, raqamli nazorat va tajribali ustozlar bilan bog‘laymiz.</p><Button asChild variant="secondary"><a href="https://cspu.uz/" target="_blank" rel="noreferrer">Universitet haqida <ArrowUpRight/></a></Button></div></section>
+<section className="cta-band"><div className="container cta-inner"><div><span className="section-index">RAQAMLI AMALIYOT</span><h2>Amaliyot jarayonini<br/>bugun boshlang.</h2></div><Button asChild size="lg"><Link to="/login">Platformaga kirish <ArrowRight/></Link></Button></div></section>
+</main><SiteFooter/></>}
